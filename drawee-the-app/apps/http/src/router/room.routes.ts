@@ -35,4 +35,28 @@ router.post("/create", authMiddleWare, async (req, res) => {
   }
 });
 
+router.get("/chats/:roomId", authMiddleWare, async (req, res) => {
+  const { roomId } = req.params;
+  try {
+    const messages = await prisma.chat.findMany({
+      where: {
+        roomId: Number(roomId),
+      },
+      orderBy: {
+        id: "desc",
+      },
+      take: 50,
+    });
+
+    if (!messages)
+      return res.status(404).json({ message: "No messages found!" });
+
+    return res.status(200).json({ message: "Messages fetched!", messages });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ message: "Something went wrong while fetching messages!" });
+  }
+});
+
 export default router;
