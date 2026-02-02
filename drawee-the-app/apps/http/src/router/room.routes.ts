@@ -35,7 +35,7 @@ router.post("/create", authMiddleWare, async (req, res) => {
   }
 });
 
-router.get("/chats/:roomId", authMiddleWare, async (req, res) => {
+router.get("/chats/:roomId", async (req, res) => {
   const { roomId } = req.params;
   try {
     const messages = await prisma.chat.findMany({
@@ -56,6 +56,23 @@ router.get("/chats/:roomId", authMiddleWare, async (req, res) => {
     return res
       .status(500)
       .json({ message: "Something went wrong while fetching messages!" });
+  }
+});
+
+router.get("/:slug", async (req, res) => {
+  const { slug } = req.params;
+  try {
+    const room = await prisma.room.findUnique({
+      where: {
+        slug: slug as string,
+      },
+    });
+
+    if (!room) return res.status(404).json({ message: "Room not found!" });
+
+    return res.status(200).json({ message: "Room found!", room });
+  } catch (error) {
+    return res.status(500).json({ message: "Something went wrong!" });
   }
 });
 

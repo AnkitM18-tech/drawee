@@ -83,7 +83,7 @@ wss.on("connection", (ws, req) => {
         const usersInRoom = users.filter((user) => user.rooms.includes(roomId));
 
         usersInRoom.forEach((user) => {
-          user.socket.send(JSON.stringify(parsedMessage.message));
+          user.socket.send(JSON.stringify(parsedMessage));
         });
       } catch (error) {
         return;
