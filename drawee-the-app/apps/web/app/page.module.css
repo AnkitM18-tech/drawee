@@ -34,6 +34,17 @@
   grid-row-start: 2;
 }
 
+.chat {
+  width: 75%;
+  margin-top: 20px;
+  margin-left: 20px;
+  border: 1px solid var(--gray-alpha-200);
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
 .main ol {
   font-family: var(--font-geist-mono);
   padding-left: 0;
@@ -68,7 +79,10 @@
   padding: 0 20px;
   font-family: var(--font-geist-sans);
   border: 1px solid transparent;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -96,8 +110,34 @@ button.secondary {
   padding: 0 20px;
   font-family: var(--font-geist-sans);
   border: 1px solid transparent;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 500;
+  background: transparent;
+  border-color: var(--gray-alpha-200);
+  min-width: 180px;
+}
+
+input.primary {
+  appearance: none;
+  width: 40%;
+  border-radius: 128px;
+  height: 48px;
+  padding: 0 20px;
+  font-family: var(--font-geist-sans);
+  border: 1px solid transparent;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s;
   display: flex;
   align-items: center;
   justify-content: center;
