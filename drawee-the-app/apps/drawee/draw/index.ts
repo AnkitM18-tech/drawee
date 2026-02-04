@@ -95,7 +95,11 @@ function clearCanvas(
 }
 
 async function getExistingShapes(roomId: number) {
-  const response = await fetch(`${HTTP_BACKEND_URL}/room/chats/${roomId}`);
+  const response = await fetch(`${HTTP_BACKEND_URL}/room/chats/${roomId}`, {
+    headers: {
+      authorization: localStorage.getItem("token") as string,
+    },
+  });
   const data = await response.json();
   const messages = data.messages;
 
