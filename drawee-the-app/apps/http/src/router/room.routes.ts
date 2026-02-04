@@ -35,7 +35,7 @@ router.post("/create", authMiddleWare, async (req, res) => {
   }
 });
 
-router.get("/chats/:roomId", async (req, res) => {
+router.get("/chats/:roomId", authMiddleWare, async (req, res) => {
   const { roomId } = req.params;
   try {
     const messages = await prisma.chat.findMany({
@@ -59,7 +59,7 @@ router.get("/chats/:roomId", async (req, res) => {
   }
 });
 
-router.get("/:slug", async (req, res) => {
+router.get("/:slug", authMiddleWare, async (req, res) => {
   const { slug } = req.params;
   try {
     const room = await prisma.room.findUnique({
