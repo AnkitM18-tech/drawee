@@ -13,6 +13,13 @@ type Shape =
       centerX: number;
       centerY: number;
       radius: number;
+    }
+  | {
+      type: "line";
+      startX: number;
+      startY: number;
+      endX: number;
+      endY: number;
     };
 
 export default async function initializeCanvas(
@@ -86,10 +93,11 @@ function clearCanvas(
   existingShapes.forEach((shape) => {
     if (shape.type === "rect") {
       ctx.strokeRect(shape.x, shape.y, shape.width, shape.height);
-    } else {
+    } else if (shape.type === "circle") {
       ctx.beginPath();
       ctx.arc(shape.centerX, shape.centerY, shape.radius, 0, 2 * Math.PI);
       ctx.stroke();
+      ctx.closePath();
     }
   });
 }
