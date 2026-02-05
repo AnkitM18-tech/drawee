@@ -42,10 +42,6 @@ router.get("/chats/:roomId", authMiddleWare, async (req, res) => {
       where: {
         roomId: Number(roomId),
       },
-      orderBy: {
-        id: "desc",
-      },
-      take: 50,
     });
 
     if (!messages)
